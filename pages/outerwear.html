@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outerwear - FURY</title>
+    <style>
+        /* --- General Reset & Style Guide Adherence --- */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff; /* Primary Background: White */
+            color: #000000; /* Text Color: Black */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+        }
+
+        /* --- 1. NAVIGATION BAR STYLES (FINAL VERSION) --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-left { flex: 1; position: relative; }
+
+        /* Shop button styles (now styled as a button) */
+        .shop-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #000000;
+            transition: color 0.2s;
+        }
+
+        .shop-btn:hover { color: #666666; }
+        .nav-center { flex: 1; text-align: center; }
+        .logo { 
+            font-size: 32px; 
+            font-weight: 900; 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+            color: #000000; 
+        }
+        .nav-right { display: flex; justify-content: flex-end; align-items: center; gap: 25px; flex: 1; }
+        .currency { 
+            font-size: 14px; 
+            font-weight: 500; 
+            letter-spacing: 1.5px; 
+            text-transform: uppercase; 
+        }
+
+        /* Dropdown Menu - Hidden by default */
+        .dropdown {
+            display: none; 
+            position: absolute;
+            top: 55px; /* Final Stable Position */
+            left: 0;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 200px;
+            padding: 15px 0;
+            z-index: 1001;
+        }
+
+        /* JavaScript adds this class on click */
+        .dropdown.show { display: block; }
+
+        .dropdown a {
+            display: block;
+            padding: 12px 25px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #000000;
+            transition: background 0.2s;
+        }
+
+        .dropdown a:hover { background-color: #f8f8f8; }
+
+        /* --- 2. Title Section --- */
+        .title-section {
+            margin-top: 60px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .title-heading {
+            font-size: 42px; /* 42px */
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .title-subtitle {
+            font-size: 16px;
+            color: #666666; /* Light Gray Text */
+            font-weight: 400;
+        }
+
+        /* --- 3. Product Grid --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns */
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+        }
+
+        /* --- Product Card Design --- */
+        .product-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Hover Effect */
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .product-image-container {
+            width: 100%;
+            height: 400px; 
+            background: #f5f5f5; /* Placeholder background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .image-placeholder {
+            font-size: 20px;
+            font-weight: 600;
+            color: #666666;
+        }
+
+        .product-details {
+            padding: 20px;
+            background: #ffffff;
+        }
+
+        .product-name {
+            font-size: 16px; 
+            font-weight: 600;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 18px; 
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 15px;
+        }
+
+        /* Add to Cart Button */
+        .add-to-cart {
+            width: 100%;
+            padding: 12px 20px;
+            background: #000000;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: #333333;
+        }
+        
+        /* --- 4. Footer Design (IDENTICAL ON ALL PAGES) --- */
+        .footer {
+            margin-top: 100px;
+            background: #ffffff;
+            padding: 40px 50px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            font-size: 13px; 
+            color: #666666; /* Light Gray Text */
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+        }
+
+        .footer-names {
+            color: #000000;
+            font-weight: 600;
+            margin-top: 15px;
+            display: block;
+            line-height: 1.8;
+        }
+
+        .footer-copyright {
+            display: block;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 1024px) {
+            nav {
+                padding: 15px 30px;
+            }
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 30px;
+                padding: 0 30px;
+            }
+            .title-heading {
+                font-size: 36px;
+            }
+            .product-image-container {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap; 
+                padding: 20px 20px 10px;
+            }
+            .nav-left, .nav-center, .nav-right {
+                flex: 0 0 100%; /* Make them full width for stacking */
+                margin-bottom: 10px;
+                text-align: center; 
+            }
+            .nav-left { order: 2; margin-top: 10px; }
+            .nav-center { order: 1; }
+            .nav-right { order: 3; justify-content: center; margin-bottom: 0; }
+            .dropdown { top: 40px; } 
+
+            .product-grid {
+                grid-template-columns: 1fr; 
+                gap: 25px;
+                padding: 0 20px;
+            }
+            .title-heading {
+                font-size: 32px;
+            }
+            .product-image-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="nav-left nav-dropdown-container">  
+                <button class="shop-btn" onclick="toggleShopDropdown()">SHOP</button>
+                
+                <div class="dropdown" id="shop-menu">
+                    <a href="outerwear.html">Outerwear</a>
+                    <a href="hoodies.html">Knitwear</a>
+                    <a href="shirts.html">Shirts</a>
+                    <a href="pants.html">Pants</a>
+                </div>
+            </div>
+
+            <div class="nav-center">
+                <a href="../index.html" class="logo">FURY</a> 
+            </div>
+
+            <div class="nav-right">
+                <span class="currency">PK / PKR</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="title-section">
+            <h1 class="title-heading">OUTERWEAR</h1>
+            <p class="title-subtitle">8 Items</p>
+        </div>
+
+        <section class="product-grid">
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <span class="image-placeholder">FURY - BOMBER</span>
+                </div>
+                <div class="product-details">
+                    <div class="product-name">Black FURY Bomber Jacket</div>
+                    <div class="product-price">Rs. 8,500</div>
+                    <button class="add-to-cart" onclick="alert('Added to cart: Black FURY Bomber Jacket!')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <span class="image-placeholder">FURY - LEATHER</span>
+                </div>
+                <div class="product-details">
+                    <div class="product-name">Urban Leather Jacket</div>
+                    <div class="product-price">Rs. 12,000</div>
+                    <button class="add-to-cart" onclick="alert('Added to cart: Urban Leather Jacket!')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <span class="image-placeholder">FURY - PARKA</span>
+                </div>
+                <div class="product-details">
+                    <div class="product-name">Winter Parka Coat</div>
+                    <div class="product-price">Rs. 9,500</div>
+                    <button class="add-to-cart" onclick="alert('Added to cart: Winter Parka Coat!')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <span class="image-placeholder">FURY - DENIM</span>
+                </div>
+                <div class="product-details">
+                    <div class="product-name">Denim Jacket</div>
+                    <div class="product-price">Rs. 6,000</div>
+                    <button class="add-to-cart" onclick="alert('Added to cart: Denim Jacket!')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <span class="image-placeholder">FURY - WINDBREAKER</span>
+                </div>
+                <div class="product-details">
+                    <div class="product-name">Windbreaker Jacket</div>
+                    <div class="product-price">Rs. 5,500</div>
+                    <button class="add-to-cart" onclick="alert('Added to cart: Windbreaker Jacket!')">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <span class="image-placeholder">FURY - TRENCH</span>
+                </div>
+                <div class="product-details">
+                    <div class="product-name">Trench Coat</div>
+                    <div class="product-price">Rs. 10,000</div>
+                    <button class="add-to-cart" onclick="alert('Added to cart: Trench Coat!')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image-container">
+                    <span class="image-placeholder">FURY - WOOL</span>
+                </div>
+                <div class="product-details">
+                    <div class="product-name">Long Wool Coat</div>
+                    <div class="product-price">Rs. 11,500</div>
+                    <button class="add-to-cart" onclick="alert('Added to cart: Long Wool Coat!')">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image-container">
+                    <span class="image-placeholder">FURY - BLAZER</span>
+                </div>
+                <div class="product-details">
+                    <div class="product-name">Tailored Blazer</div>
+                    <div class="product-price">Rs. 7,500</div>
+                    <button class="add-to-cart" onclick="alert('Added to cart: Tailored Blazer!')">Add to Cart</button>
+                </div>
+            </div>
+            
+        </section>
+    </main>
+
+    <footer class="footer">
+        Premium streetwear for the bold
+        <span class="footer-names">Hashir, Wussat, Fatima</span>
+        <span class="footer-copyright">&copy; 2025 FURY. ICT Semester Project.</span>
+    </footer>
+
+    <script>
+        function toggleShopDropdown() {
+            document.getElementById("shop-menu").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.shop-btn')) {
+                var dropdown = document.getElementById("shop-menu");
+                if (dropdown && dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
