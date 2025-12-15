@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FURY | Official Store</title>
+    <style>
+        /* BASE STYLES */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background-color: #ffffff; color: #000000; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- STANDARDIZED NAVIGATION BAR --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 50px; background-color: #ffffff; border-bottom: 1px solid #e0e0e0;
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .nav-left { flex: 1; position: relative; }
+        .shop-btn {
+            background: none; border: none; cursor: pointer; padding: 0;
+            font-size: 14px; font-weight: 500; letter-spacing: 1.5px;
+            text-transform: uppercase; color: #000000; transition: color 0.2s;
+        }
+        .shop-btn:hover { color: #666666; }
+
+        .dropdown {
+            display: none; position: absolute; top: 55px; left: 0;
+            background-color: #ffffff; border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 200px; padding: 15px 0; z-index: 1001;
+        }
+        .dropdown.show { display: block; }
+        .dropdown a { 
+            display: block; padding: 12px 25px; font-size: 13px; 
+            text-transform: uppercase; letter-spacing: 1.5px; transition: 0.2s;
+        }
+        .dropdown a:hover { background-color: #f8f8f8; }
+
+        .nav-center { flex: 1; text-align: center; }
+        .logo { font-size: 32px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; }
+
+        .nav-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 25px; }
+        .currency { font-size: 14px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; }
+
+        /* HERO SECTION */
+        .hero {
+            height: 85vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; text-align: center;
+        }
+        .hero h1 { font-size: clamp(50px, 10vw, 100px); font-weight: 900; letter-spacing: 15px; margin-bottom: 20px; }
+        .hero p { font-size: 14px; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 30px; }
+        .shop-now {
+            padding: 15px 45px; background: white; color: black; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px; transition: 0.3s;
+        }
+        .shop-now:hover { background: black; color: white; }
+
+        /* CATEGORIES SECTION */
+        .cat-section { padding: 80px 50px; max-width: 1400px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 3px; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .grid-item { height: 600px; position: relative; overflow: hidden; background: #eee; }
+        .grid-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        .grid-item:hover img { transform: scale(1.05); }
+        .grid-content { position: absolute; bottom: 30px; left: 30px; color: white; }
+        .grid-content h3 { font-size: 24px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+        .grid-content a { font-size: 12px; font-weight: 700; text-decoration: underline; text-transform: uppercase; }
+
+        /* FOOTER */
+        footer { background-color: #ffffff; padding: 60px 50px 40px; text-align: center; border-top: 1px solid #e0e0e0; margin-top: 50px; }
+        .footer-text { font-size: 13px; color: #666666; letter-spacing: 0.5px; margin-bottom: 15px; }
+        .team-names { font-size: 13px; color: #000000; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-left">
+            <button class="shop-btn" onclick="toggleShopDropdown()">SHOP</button>
+            <div class="dropdown" id="shop-menu">
+                <a href="pages/outerwear.html">Outerwear</a>
+                <a href="pages/hoodies.html">Knitwear</a>
+                <a href="pages/shirts.html">Shirts</a>
+                <a href="pages/pants.html">Pants</a>
+            </div>
+        </div>
+        <div class="nav-center">
+            <a href="index.html" class="logo">FURY</a>
+        </div>
+        <div class="nav-right">
+            <span class="currency">PK / PKR</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>FURY</h1>
+        <p>A/W 2025 Drop One</p>
+        <a href="pages/hoodies.html" class="shop-now">Explore Collection</a>
+    </header>
+
+    <section class="cat-section">
+        <h2 class="section-header">The Lineup</h2>
+        <div class="grid">
+            <div class="grid-item">
+                <img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?q=80&w=1974&auto=format&fit=crop" alt="Knitwear">
+                <div class="grid-content">
+                    <h3>Heavyweight Knitwear</h3>
+                    <a href="pages/hoodies.html">Shop Knitwear</a>
+                </div>
+            </div>
+            <div class="grid-item">
+                <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=2070&auto=format&fit=crop" alt="Shirts">
+                <div class="grid-content">
+                    <h3>Essentials Shirts</h3>
+                    <a href="pages/shirts.html">Shop Shirts</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-text">Premium streetwear for the bold</p>
+        <p class="team-names">Hashir, Wussat, Fatima</p>
+        <p class="footer-text">© 2025 FURY. ICT Semester Project.</p>
+    </footer>
+
+    <script>
+        function toggleShopDropdown() {
+            document.getElementById("shop-menu").classList.toggle("show");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.shop-btn')) {
+                var dropdown = document.getElementById("shop-menu");
+                if (dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
