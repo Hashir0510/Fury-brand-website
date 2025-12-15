@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knitwear | FURY</title>
+    <style>
+        /* BASE STYLES */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background-color: #ffffff; color: #000000; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- STANDARDIZED NAVIGATION BAR (JS Toggle) --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 50px; background-color: #ffffff; border-bottom: 1px solid #e0e0e0;
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .nav-left { flex: 1; position: relative; }
+        .shop-btn {
+            background: none; border: none; cursor: pointer; padding: 0;
+            font-size: 14px; font-weight: 500; letter-spacing: 1.5px;
+            text-transform: uppercase; color: #000000; transition: color 0.2s;
+        }
+        .nav-center { flex: 1; text-align: center; }
+        .logo-text { font-size: 32px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; }
+        .nav-right { display: flex; justify-content: flex-end; align-items: center; gap: 25px; flex: 1; }
+        .currency { font-size: 14px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; }
+
+        .dropdown {
+            display: none; position: absolute; top: 55px; left: 0;
+            background-color: #ffffff; border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 200px; padding: 15px 0; z-index: 1001;
+        }
+        .dropdown.show { display: block; }
+        .dropdown a { display: block; padding: 12px 25px; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; }
+        .dropdown a:hover { background-color: #f8f8f8; }
+
+        /* --- MAIN CONTENT AREA --- */
+        .content-area { max-width: 1400px; margin: 0 auto; padding: 60px 50px; }
+        
+        .page-header { text-align: center; margin-bottom: 60px; }
+        .page-header h2 { font-size: 2.5rem; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px; }
+        .product-count { color: #666; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
+
+        /* PRODUCTS GRID */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .product-card { position: relative; transition: 0.3s; }
+        
+        .product-image-container {
+            width: 100%; aspect-ratio: 3/4; background-color: #f9f9f9;
+            overflow: hidden; position: relative; margin-bottom: 15px;
+        }
+
+        /* Branding Overlay for Placeholders */
+        .product-image-container::after {
+            content: 'FURY'; position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%); color: #eee;
+            font-size: 2.5rem; font-weight: 900; letter-spacing: 5px;
+        }
+
+        .product-image { width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1; transition: 0.5s; }
+        .product-card:hover .product-image { transform: scale(1.05); }
+
+        .quick-add-btn {
+            position: absolute; bottom: 20px; right: 20px; width: 40px; height: 40px;
+            border-radius: 50%; background: white; border: 1px solid black;
+            cursor: pointer; opacity: 0; transition: 0.3s; z-index: 10;
+        }
+        .product-card:hover .quick-add-btn { opacity: 1; }
+        .quick-add-btn::before { content: '+'; font-size: 24px; }
+
+        .product-info { text-align: left; }
+        .product-name { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 0.5px; }
+        .product-price { font-size: 0.9rem; color: #000; }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #ffffff; padding: 60px 50px 40px; text-align: center;
+            border-top: 1px solid #e0e0e0; margin-top: 50px;
+        }
+        .footer-text { font-size: 13px; color: #666666; margin-bottom: 15px; }
+        .team-names { font-size: 13px; color: #000000; font-weight: 600; margin-bottom: 15px; }
+
+        /* Responsive */
+        @media (max-width: 1024px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-left"> 
+            <button class="shop-btn" onclick="toggleShopDropdown()">SHOP</button>
+            <div class="dropdown" id="shop-menu">
+                <a href="outerwear.html">Outerwear</a>
+                <a href="hoodies.html">Knitwear</a>
+                <a href="shirts.html">Shirts</a>
+                <a href="pants.html">Pants</a>
+            </div>
+        </div>
+        <div class="nav-center">
+            <a href="../index.html" class="logo-text">FURY</a>
+        </div>
+        <div class="nav-right">
+            <span class="currency">PK / PKR</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        </div>
+    </nav>
+
+    <main class="content-area">
+        <div class="page-header">
+            <h2>Knitwear</h2>
+            <p class="product-count">8 Items</p>
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=1974&auto=format&fit=crop" class="product-image">
+                    <button class="quick-add-btn" onclick="openProductDetails('CORE HOODIE - ONYX', 4500)"></button>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Core Hoodie - Onyx</h3>
+                    <p class="product-price">Rs. 4,500</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=2000&auto=format&fit=crop" class="product-image">
+                    <button class="quick-add-btn" onclick="openProductDetails('HEAVYWEIGHT KNIT - ASH', 5200)"></button>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Heavyweight Knit - Ash</h3>
+                    <p class="product-price">Rs. 5,200</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1972&auto=format&fit=crop" class="product-image">
+                    <button class="quick-add-btn" onclick="openProductDetails('OVERSIZED CREWNECK', 3800)"></button>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Oversized Crewneck</h3>
+                    <p class="product-price">Rs. 3,800</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1578932750294-f5075e85f44a?q=80&w=1935&auto=format&fit=crop" class="product-image">
+                    <button class="quick-add-btn" onclick="openProductDetails('VINTAGE WASH HOODIE', 4800)"></button>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Vintage Wash Hoodie</h3>
+                    <p class="product-price">Rs. 4,800</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1512446813927-4564106fe935?q=80&w=2070&auto=format&fit=crop" class="product-image">
+                    <button class="quick-add-btn" onclick="openProductDetails('WAFFLE KNIT SWEATER', 5500)"></button>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Waffle Knit Sweater</h3>
+                    <p class="product-price">Rs. 5,500</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=2080&auto=format&fit=crop" class="product-image">
+                    <button class="quick-add-btn" onclick="openProductDetails('GRAPHIC PULLOVER', 4200)"></button>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Graphic Pullover</h3>
+                    <p class="product-price">Rs. 4,200</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?q=80&w=1974&auto=format&fit=crop" class="product-image">
+                    <button class="quick-add-btn" onclick="openProductDetails('PREMIUM MOCK NECK', 6000)"></button>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Premium Mock Neck</h3>
+                    <p class="product-price">Rs. 6,000</p>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1544642899-f0d6e5f6ed6a?q=80&w=1974&auto=format&fit=crop" class="product-image">
+                    <button class="quick-add-btn" onclick="openProductDetails('DISTRESSED HOODIE', 4900)"></button>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Distressed Hoodie</h3>
+                    <p class="product-price">Rs. 4,900</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p class="footer-text">Premium streetwear for the bold</p>
+        <p class="team-names">Hashir, Wussat, Fatima</p>
+        <p class="footer-text">© 2025 FURY. ICT Semester Project.</p>
+    </footer>
+
+    <script>
+        function toggleShopDropdown() {
+            document.getElementById("shop-menu").classList.toggle("show");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.shop-btn')) {
+                var dropdown = document.getElementById("shop-menu");
+                if (dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
+                }
+            }
+        }
+
+        function openProductDetails(productName, price) {
+            alert('🔥 ' + productName + '\nPrice: Rs. ' + price + '\n\nAdd this to your cart in the Order Form!');
+        }
+    </script>
+</body>
+</html>
