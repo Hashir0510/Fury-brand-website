@@ -3,91 +3,394 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FURY - Clothing Brand</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>FURY | Official Store</title>
+    <style>
+        /* BASE STYLES */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background-color: #ffffff; color: #000000; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- NAVIGATION BAR STYLES (TRANSPARENT & WHITE TEXT) --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            position: absolute; 
+            top: 0;
+            left: 0;
+            width: 100%; 
+            z-index: 1000;
+        }
+
+        .nav-left { flex: 1; position: relative; }
+        
+        /* --- FIX: SHOP BUTTON Background Reverted to White --- */
+        .shop-btn {
+            background: transparent; /* REVERTED TO WHITE BACKGROUND */
+            border: none; 
+            cursor: pointer;
+            padding: 0; /* Added padding to make it a distinct box */
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: white !important; /* Text must be black on white background */
+            transition: opacity 0.2s;
+        }
+
+        .shop-btn:hover { opacity: 0.8; }
+        .nav-center { flex: 1; text-align: center; }
+        .logo { 
+            font-size: 32px; 
+            font-weight: 900; 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+            color: white; 
+        }
+        .nav-right { display: flex; justify-content: flex-end; align-items: center; gap: 25px; flex: 1; }
+        .currency { 
+            font-size: 14px; 
+            font-weight: 500; 
+            letter-spacing: 1.5px; 
+            text-transform: uppercase; 
+            color: white; 
+        }
+        .nav-right svg {
+            stroke: white;
+        }
+
+
+        /* Dropdown Menu - Keep the background white so the menu is readable */
+        .dropdown {
+            display: none; 
+            position: absolute;
+            top: 55px; 
+            left: 0;
+            background-color: #ffffff; 
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 200px;
+            padding: 15px 0;
+            z-index: 1001;
+        }
+        .dropdown.show { display: block; }
+        .dropdown a {
+            display: block;
+            padding: 12px 25px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #000000; 
+            transition: background 0.2s;
+        }
+        .dropdown a:hover { background-color: #f8f8f8; }
+        /* Navbar turns white when dropdown is open */
+nav.dropdown-active {
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+
+/* Shop button turns black text when navbar is white */
+nav.dropdown-active .shop-btn {
+    color: black !important;
+}
+
+/* Logo and other nav items turn black when navbar is white */
+nav.dropdown-active .logo,
+nav.dropdown-active .currency {
+    color: black;
+}
+
+nav.dropdown-active .nav-right svg {
+    stroke: black;
+}
+
+
+        /* --- HERO SECTION (FULL HEIGHT: 100vh) --- */
+        .hero {
+            height: 100vh; 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; text-align: center;
+            padding-top: 50px; 
+        }
+        .hero h1 { font-size: clamp(50px, 10vw, 100px); font-weight: 900; letter-spacing: 15px; margin-bottom: 20px; }
+        .hero p { font-size: 14px; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 30px; }
+        .shop-now {
+            padding: 15px 45px; background: white; color: black; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px; transition: 0.3s;
+            cursor: pointer;
+        }
+        .shop-now:hover { background: black; color: white; }
+
+        /* --- CORE COLLECTION SECTION --- */
+        .core-collection {
+            height: 85vh; 
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            color: white;
+            background-image: linear-gradient(to right, rgba(0,0,0,0.2), rgba(0,0,0,0.0)), url('image_2025-12-15_233239353.jpg'); 
+        }
+        
+        .core-content p { 
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px; 
+        }
+        .core-content h2 { 
+            font-size: 50px;
+            font-weight: 400; 
+            letter-spacing: 5px;
+            margin-bottom: 20px; 
+            font-family: 'Times New Roman', serif; 
+        }
+        .core-content .shop-now {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 12px 30px; 
+        }
+        .core-content .shop-now:hover {
+            background: white;
+            color: black;
+        }
+
+        /* --- FULL-WIDTH CATEGORY GRID SECTION --- */
+        .category-grid-full {
+            display: flex;
+            max-width: none; 
+            margin: 0;
+        }
+        .cat-item-full {
+            flex: 1;
+            height: 700px; 
+            position: relative;
+            overflow: hidden;
+        }
+        .cat-item-full img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s;
+            filter: brightness(0.9); 
+        }
+        .cat-item-full:hover img {
+            transform: scale(1.03);
+            filter: brightness(1);
+        }
+        .cat-info {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            color: white;
+        }
+        .cat-info h3 {
+            font-size: 30px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        /* --- PROMO SECTION HEIGHT INCREASED TO 70vh --- */
+        .promo-section {
+            height: 70vh; 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1579758778401-d703774880c5?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 50px 0;
+        }
+        .promo-section h2 {
+            font-size: 40px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+        .promo-section p {
+            font-size: 16px;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+
+        /* --- FOOTER HEIGHT INCREASED VISUALLY TO ~40vh USING PADDING --- */
+        .contact-footer {
+            background-color: #000;
+            color: #fff;
+            padding: 100px 50px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .footer-column {
+            flex: 1;
+            padding: 0 20px;
+            min-width: 150px;
+        }
+        .footer-column h4 {
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+        .footer-column a, .footer-column p {
+            display: block;
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 10px;
+            transition: color 0.2s;
+        }
+        .footer-column a:hover {
+            color: #fff;
+        }
+        .footer-left p {
+            font-size: 15px;
+            color: #fff;
+            line-height: 1.5;
+            max-width: 300px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">FURY</div>
-            <ul class="nav-menu">
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="pages/products.html">PRODUCTS</a></li>
-                <li><a href="pages/order.html">ORDER</a></li>
-                <li><a href="pages/about.html">ABOUT</a></li>
-            </ul>
+
+    <nav>
+        <div class="nav-left nav-dropdown-container"> 
+            <button class="shop-btn" onclick="toggleShopDropdown()">SHOP</button>
+            
+            <div class="dropdown" id="shop-menu">
+                <a href="pages/outerwear.html">Outerwear</a>
+                <a href="pages/hoodies.html">Knitwear</a>
+                <a href="pages/shirts.html">Shirts</a>
+                <a href="pages/pants.html">Pants</a>
+            </div>
+        </div>
+
+        <div class="nav-center">
+            <a href="index.html" class="logo">FURY</a>
+        </div>
+
+        <div class="nav-right">
+            <span class="currency">PK / PKR</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h2 class="hero-subtitle">Winter Collection 2025</h2>
-            <h1 class="hero-title">UNLEASH YOUR FURY</h1>
-            <a href="pages/products.html" class="hero-btn">SHOP NOW</a>
+    <header class="hero">
+        <h1>FURY</h1>
+        <p>A/W 2025 Drop One</p>
+        <a href="pages/hoodies.html" class="shop-now">Explore Collection</a> 
+    </header>
+
+    <section class="core-collection">
+        <div class="core-content">
+            <p>NOW LIVE</p>
+            <h2>CORE COLLECTION</h2>
+            <a href="pages/hoodies.html" class="shop-now">SHOP NOW</a>
         </div>
     </section>
 
-    <!-- Category Section -->
-    <section class="categories">
-        <h2 class="section-title">SHOP BY CATEGORY</h2>
-        <div class="category-grid">
-            <a href="pages/outerwear.html" class="category-card">
-                <div class="category-image">
-                    <img src="images/outerwear.jpg" alt="Outerwear">
-                </div>
+    <section class="category-grid-full">
+        <a href="pages/outerwear.html" class="cat-item-full">
+            <img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?q=80&w=1974&auto=format&fit=crop" alt="Outerwear">
+            <div class="cat-info">
                 <h3>OUTERWEAR</h3>
-            </a>
-
-            <a href="pages/hoodies.html" class="category-card">
-                <div class="category-image">
-                    <img src="images/hoodies.jpg" alt="Hoodies">
-                </div>
-                <h3>HOODIES</h3>
-            </a>
-
-            <a href="pages/shirts.html" class="category-card">
-                <div class="category-image">
-                    <img src="images/shirts.jpg" alt="Shirts">
-                </div>
+            </div>
+        </a>
+        <a href="pages/hoodies.html" class="cat-item-full">
+            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=2000&auto=format&fit=crop" alt="Knitwear">
+            <div class="cat-info">
+                <h3>KNITWEAR</h3>
+            </div>
+        </a>
+        <a href="pages/shirts.html" class="cat-item-full">
+            <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1972&auto=format&fit=crop" alt="Shirts">
+            <div class="cat-info">
                 <h3>SHIRTS</h3>
-            </a>
-
-            <a href="pages/pants.html" class="category-card">
-                <div class="category-image">
-                    <img src="images/pants.jpg" alt="Pants">
-                </div>
+            </div>
+        </a>
+        <a href="pages/pants.html" class="cat-item-full">
+            <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=2070&auto=format&fit=crop" alt="Pants">
+            <div class="cat-info">
                 <h3>PANTS</h3>
-            </a>
-        </div>
+            </div>
+        </a>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>FURY</h3>
-                <p>Premium streetwear for the bold</p>
-            </div>
-            <div class="footer-section">
-                <h4>QUICK LINKS</h4>
-                <ul>
-                    <li><a href="pages/products.html">Products</a></li>
-                    <li><a href="pages/order.html">Order</a></li>
-                    <li><a href="pages/about.html">About Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>PROJECT TEAM</h4>
-                <p>Hashir</p>
-                <p>Wussat</p>
-                <p>Fatima</p>
-            </div>
+    <section class="promo-section">
+        <h2>JOIN FURY ACCESS</h2>
+        <p>Sign up now for 10% off your next order, exclusive early drops, and members-only benefits.</p>
+        <a href="order.html" class="shop-now">SIGN UP NOW</a>
+    </section>
+
+    <footer class="contact-footer">
+        <div class="footer-column footer-left">
+            <p>FURY is a premium streetwear label that focuses on bold design, quality materials, and individual expression.</p>
+            <p style="margin-top: 20px;">Hashir, Wussat, Fatima | ICT Semester Project.</p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 FURY. ICT Semester Project.</p>
+
+        <div class="footer-column">
+            <h4>About</h4>
+            <a href="about.html">About Us</a>
+            <a href="products.html">All Products</a>
+        </div>
+
+        <div class="footer-column">
+            <h4>Support</h4>
+            <a href="order.html">Contact Us</a>
+            <a href="#">FAQ</a>
+        </div>
+
+        <div class="footer-column">
+            <h4>Legal</h4>
+            <a href="#">Shipping</a>
+            <a href="#">Returns</a>
+            <a href="#">Privacy</a>
         </div>
     </footer>
+
+ <script>
+    function toggleShopDropdown() {
+        var dropdown = document.getElementById("shop-menu");
+        var nav = document.querySelector("nav");
+        
+        dropdown.classList.toggle("show");
+        nav.classList.toggle("dropdown-active");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.shop-btn')) {
+            var dropdown = document.getElementById("shop-menu");
+            var nav = document.querySelector("nav");
+            
+            if (dropdown && dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+                nav.classList.remove('dropdown-active');
+            }
+        }
+    }
+    
+    function addToCartAlert() {
+         alert("Item successfully added to your cart!");
+    }
+</script>
 </body>
 </html>
