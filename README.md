@@ -1,4 +1,8 @@
 # FURY | A classic Streetwear Store
+### Group Members:
+* Hashir Touqir
+* Wussat ullah Khan
+* Fatima Khawaja
 ### Project Description
 FURY is a premium streetwear e-commerce website designed for the A/W 2025 collection. This project was developed as part of the **Introduction to Information & Communication Technology (ICT)** course under the supervision of Instructor **Adnan Jelani**. 
 
