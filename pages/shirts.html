@@ -17,25 +17,17 @@
             position: sticky; top: 0; z-index: 1000;
         }
         .nav-left { flex: 1; position: relative; }
-        .shop-btn {
-            background: none; border: none; cursor: pointer; padding: 0;
-            font-size: 14px; font-weight: 500; letter-spacing: 1.5px;
-            text-transform: uppercase; color: #000000;
-        }
+        .shop-btn { background: none; border: none; cursor: pointer; font-size: 14px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; }
         .dropdown {
             display: none; position: absolute; top: 55px; left: 0;
             background-color: #ffffff; border: 1px solid #e0e0e0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 200px; padding: 15px 0; z-index: 1001;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); width: 200px; padding: 15px 0; z-index: 1001;
         }
         .dropdown.show { display: block; }
         .dropdown a { display: block; padding: 12px 25px; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; }
-        .dropdown a:hover { background-color: #f8f8f8; }
-
         .nav-center { flex: 1; text-align: center; }
         .logo { font-size: 32px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; }
-
         .nav-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 25px; }
-        .currency { font-size: 14px; font-weight: 500; letter-spacing: 1.5px; }
 
         /* HEADER */
         .category-header { padding: 80px 50px 40px; text-align: center; }
@@ -44,31 +36,32 @@
 
         /* GRID */
         .product-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr);
-            gap: 40px 30px; padding: 0 50px 100px;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px 30px;
+            max-width: 1400px; margin: 0 auto; padding: 0 50px 100px;
         }
-        .product-card { position: relative; transition: 0.3s; }
-        
-        /* Fixed Aspect Ratio to match Knitwear/Pants */
-        .img-container {
-            aspect-ratio: 2/3; overflow: hidden; background-color: #f5f5f5; position: relative;
+
+        /* FIXED ASPECT RATIO (Matches Outerwear/Knitwear) */
+        .product-image-container {
+            width: 100%;
+            aspect-ratio: 2 / 3; /* This ensures the tall, professional look */
+            overflow: hidden;
+            background-color: #f5f5f5;
         }
-        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* This prevents the "too big" stretching effect */
+            transition: transform 0.6s ease;
+        }
+
         .product-card:hover img { transform: scale(1.05); }
 
-        /* EXACT ADD TO CART BUTTON STYLE */
+        /* ADD TO CART BUTTON */
         .add-to-cart-btn {
-            width: 100%;
-            padding: 15px;
-            background-color: #000000;
-            color: #ffffff;
-            border: none;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 15px;
+            width: 100%; padding: 15px; background-color: #000000; color: #ffffff;
+            border: none; cursor: pointer; font-size: 12px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px; margin-top: 15px;
             transition: background-color 0.3s;
         }
         .add-to-cart-btn:hover { background-color: #333333; }
@@ -84,9 +77,13 @@
 
         /* RESPONSIVE */
         @media (max-width: 1100px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 768px) { .product-grid { grid-template-columns: repeat(2, 1fr); padding: 0 20px 80px; } .category-header { padding: 50px 20px 30px; } }
+        @media (max-width: 768px) { 
+            .product-grid { grid-template-columns: repeat(2, 1fr); padding: 0 20px 80px; }
+            .category-header { padding: 50px 20px 30px; }
+        }
     </style>
 </head>
+
 <body>
 
     <nav>
@@ -99,13 +96,11 @@
                 <a href="pants.html">Pants</a>
             </div>
         </div>
-        <div class="nav-center">
-            <a href="../index.html" class="logo">FURY</a>
-        </div>
+        <div class="nav-center"><a href="../index.html" class="logo">FURY</a></div>
         <div class="nav-right">
             <span class="currency">PK / PKR</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
         </div>
     </nav>
 
@@ -116,90 +111,90 @@
 
     <section class="product-grid">
         <div class="product-card">
-            <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1000&auto=format&fit=crop" alt="Logo Tee">
+            <div class="product-image-container">
+                <img src="../images/shirts1.png" alt="Regular fit cotton blend shirt">
             </div>
             <div class="product-info">
-                <p class="product-name">FURY Standard Logo Tee</p>
-                <p class="product-price">Rs. 2,500</p>
-                <button class="add-to-cart-btn" onclick="alert('FURY Standard Logo Tee added to cart!')">Add to Cart</button>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1000&auto=format&fit=crop" alt="Black Tee">
-            </div>
-            <div class="product-info">
-                <p class="product-name">Oversized Onyx Shirt</p>
-                <p class="product-price">Rs. 3,200</p>
-                <button class="add-to-cart-btn" onclick="alert('Oversized Onyx Shirt added to cart!')">Add to Cart</button>
-            </div>
-        </div>
-
-        <div class="product-card">
-            <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=1000&auto=format&fit=crop" alt="White Shirt">
-            </div>
-            <div class="product-info">
-                <p class="product-name">Pure Ivory Oxford</p>
+                <h3 class="product-name">Regular fit cotton blend shirt</h3>
                 <p class="product-price">Rs. 4,500</p>
-                <button class="add-to-cart-btn" onclick="alert('Pure Ivory Oxford added to cart!')">Add to Cart</button>
+                <button class="add-to-cart-btn" onclick="alert('Added to cart: Regular fit cotton blend shirt!')">Add to Cart</button>
             </div>
         </div>
 
         <div class="product-card">
-            <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=1000&auto=format&fit=crop" alt="Boxy Shirt">
+            <div class="product-image-container">
+                <img src="../images/shirts2.png" alt="regular fit brown cotton shirt">
             </div>
             <div class="product-info">
-                <p class="product-name">Boxy Fit Utility Shirt</p>
-                <p class="product-price">Rs. 3,800</p>
-                <button class="add-to-cart-btn" onclick="alert('Boxy Fit Utility Shirt added to cart!')">Add to Cart</button>
+                <h3 class="product-name">regular fit brown cotton shirt</h3>
+                <p class="product-price">Rs. 4,800</p>
+                <button class="add-to-cart-btn" onclick="alert('Added to cart: regular fit brown cotton shirt!')">Add to Cart</button>
             </div>
         </div>
 
         <div class="product-card">
-            <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=1000&auto=format&fit=crop" alt="Graphic Tee">
+            <div class="product-image-container">
+                <img src="../images/shirts3.png" alt="Regular fit pinstripe white shirt">
             </div>
             <div class="product-info">
-                <p class="product-name">Distorted Reality Graphic</p>
-                <p class="product-price">Rs. 2,800</p>
-                <button class="add-to-cart-btn" onclick="alert('Distorted Reality Graphic added to cart!')">Add to Cart</button>
+                <h3 class="product-name">Regular fit pinstripe white shirt</h3>
+                <p class="product-price">Rs. 5,200</p>
+                <button class="add-to-cart-btn" onclick="alert('Added to cart: Regular fit pinstripe white shirt!')">Add to Cart</button>
             </div>
         </div>
 
         <div class="product-card">
-            <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop" alt="Grey Tee">
+            <div class="product-image-container">
+                <img src="../images/shirts4.png" alt="linen slim fit blue shirt">
             </div>
             <div class="product-info">
-                <p class="product-name">Heather Grey Heavyweight</p>
-                <p class="product-price">Rs. 2,400</p>
-                <button class="add-to-cart-btn" onclick="alert('Heather Grey Heavyweight added to cart!')">Add to Cart</button>
+                <h3 class="product-name">linen slim fit blue shirt</h3>
+                <p class="product-price">Rs. 5,500</p>
+                <button class="add-to-cart-btn" onclick="alert('Added to cart: linen slim fit blue shirt!')">Add to Cart</button>
             </div>
         </div>
 
         <div class="product-card">
-            <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1000&auto=format&fit=crop" alt="Vintage Shirt">
+            <div class="product-image-container">
+                <img src="../images/shirts5.png" alt="Regular fit faded linen green shirt">
             </div>
             <div class="product-info">
-                <p class="product-name">Vintage Washed Tee</p>
-                <p class="product-price">Rs. 2,900</p>
-                <button class="add-to-cart-btn" onclick="alert('Vintage Washed Tee added to cart!')">Add to Cart</button>
+                <h3 class="product-name">Regular fit faded linen green shirt</h3>
+                <p class="product-price">Rs. 5,800</p>
+                <button class="add-to-cart-btn" onclick="alert('Added to cart: Regular fit faded linen green shirt!')">Add to Cart</button>
             </div>
         </div>
 
         <div class="product-card">
-            <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1589310243389-96a5483213a8?q=80&w=1000&auto=format&fit=crop" alt="Polo Shirt">
+            <div class="product-image-container">
+                <img src="../images/shirts6.png" alt="Regular fit striped linen sky blue shirt">
             </div>
             <div class="product-info">
-                <p class="product-name">Minimalist Piqué Polo</p>
-                <p class="product-price">Rs. 3,500</p>
-                <button class="add-to-cart-btn" onclick="alert('Minimalist Piqué Polo added to cart!')">Add to Cart</button>
+                <h3 class="product-name">Regular fit striped linen sky blue shirt</h3>
+                <p class="product-price">Rs. 6,000</p>
+                <button class="add-to-cart-btn" onclick="alert('Added to cart: Regular fit striped linen sky blue shirt!')">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="../images/shirts7.png" alt="Relaxed fit check shirt">
+            </div>
+            <div class="product-info">
+                <h3 class="product-name">Relaxed fit check shirt</h3>
+                <p class="product-price">Rs. 5,400</p>
+                <button class="add-to-cart-btn" onclick="alert('Added to cart: Relaxed fit check shirt!')">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="../images/shirts8.png" alt="Regular fit flowing shirt">
+            </div>
+            <div class="product-info">
+                <h3 class="product-name">Regular fit flowing shirt</h3>
+                <p class="product-price">Rs. 5,000</p>
+                <button class="add-to-cart-btn" onclick="alert('Added to cart: Regular fit flowing shirt!')">Add to Cart</button>
             </div>
         </div>
     </section>
@@ -211,16 +206,11 @@
     </footer>
 
     <script>
-        function toggleShopDropdown() {
-            document.getElementById("shop-menu").classList.toggle("show");
-        }
-
-        window.onclick = function(event) {
+        function toggleShopDropdown() { document.getElementById("shop-menu").classList.toggle("show"); }
+        window.onclick = function (event) {
             if (!event.target.matches('.shop-btn')) {
                 var dropdown = document.getElementById("shop-menu");
-                if (dropdown && dropdown.classList.contains('show')) {
-                    dropdown.classList.remove('show');
-                }
+                if (dropdown && dropdown.classList.contains('show')) { dropdown.classList.remove('show'); }
             }
         }
     </script>
