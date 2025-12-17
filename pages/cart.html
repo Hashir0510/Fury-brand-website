@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bag — FURY</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #000000;
+            --muted: #767676;
+            --border: #e8e8e8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 40px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+        }
+        .logo { font-size: 20px; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; }
+        .back-link { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; color: var(--muted); transition: 0.3s; }
+        .back-link:hover { color: #000; }
+
+        /* --- LAYOUT --- */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 50px 100px 50px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 120px;
+        }
+
+        h1.page-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+            font-weight: 800;
+        }
+
+        /* --- ITEMS --- */
+        .cart-item {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 30px;
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+        .item-image { width: 140px; height: 180px; background-color: #f5f5f5; overflow: hidden; }
+        .item-image img { width: 100%; height: 100%; object-fit: cover; }
+
+        .item-info { display: flex; flex-direction: column; justify-content: space-between; }
+        .item-top { display: flex; justify-content: space-between; align-items: flex-start; }
+        .item-name { font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .item-price { font-size: 15px; font-weight: 400; color: var(--text); }
+        .item-details { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.8; }
+        
+        .remove-trigger {
+            background: none; border: none; font-size: 10px; text-transform: uppercase;
+            letter-spacing: 1px; color: var(--muted); cursor: pointer; padding-top: 10px;
+            width: fit-content; border-bottom: 1px solid transparent;
+        }
+        .remove-trigger:hover { border-bottom: 1px solid var(--muted); }
+
+        /* --- SUMMARY --- */
+        .summary-panel { position: sticky; top: 40px; height: fit-content; }
+        .summary-box { background: #fafafa; padding: 50px; }
+        .summary-title { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 30px; font-weight: 700; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 13px; color: var(--muted); }
+        .summary-total { margin-top: 30px; padding-top: 30px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; color: #000; }
+
+        .checkout-btn {
+            display: block; text-align: center; width: 100%; background: #000; color: #fff; padding: 25px;
+            border: none; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px;
+            margin-top: 40px; cursor: pointer; transition: background 0.3s;
+        }
+        .checkout-btn:hover { background: #333; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../index.html" class="back-link">← Continue Shopping</a>
+        <a href="../index.html" class="logo">FURY</a>
+        <div style="width: 140px;"></div> 
+    </nav>
+
+    <div class="main-container" id="cart-content">
+        </div>
+
+    <script>
+        // Start with exactly 2 items for the demo
+        let cartItems = [
+            {
+                id: 1,
+                name: "FURY 'GHOST' KNIT SWEATER",
+                price: 18500,
+                size: "L",
+                color: "BONE",
+                image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=600&auto=format&fit=crop"
+            },
+            {
+                id: 2,
+                name: "CORE HEAVYWEIGHT HOODIE",
+                price: 12500,
+                size: "M",
+                color: "PITCH BLACK",
+                image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=600&auto=format&fit=crop"
+            }
+        ];
+
+        function renderCart() {
+            const container = document.getElementById('cart-content');
+            
+            if (cartItems.length === 0) {
+                container.innerHTML = `<div style="text-align:center; grid-column:1/-1; padding:100px 0;"><p style="letter-spacing:2px;">BAG EMPTY</p><a href="index.html" class="checkout-btn" style="display:inline-block; width:auto; margin-top:20px; padding:20px 40px;">Return Home</a></div>`;
+                return;
+            }
+
+            let subtotal = 0;
+            let itemsHtml = '';
+
+            cartItems.forEach((item, index) => {
+                subtotal += item.price;
+                itemsHtml += `
+                    <div class="cart-item">
+                        <div class="item-image"><img src="${item.image}"></div>
+                        <div class="item-info">
+                            <div class="item-top">
+                                <div>
+                                    <h2 class="item-name">${item.name}</h2>
+                                    <p class="item-details">Color: ${item.color}<br>Size: ${item.size}<br>Qty: 1</p>
+                                </div>
+                                <span class="item-price">Rs ${item.price.toLocaleString()}</span>
+                            </div>
+                            <button class="remove-trigger" onclick="removeItem(${index})">Remove</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = `
+                <div>
+                    <h1 class="page-title">Shopping Bag (${cartItems.length})</h1>
+                    ${itemsHtml}
+                </div>
+                <div class="summary-panel">
+                    <div class="summary-box">
+                        <h2 class="summary-title">Summary</h2>
+                        <div class="summary-row"><span>Subtotal</span><span>Rs ${subtotal.toLocaleString()}</span></div>
+                        <div class="summary-row"><span>Shipping</span><span>Free</span></div>
+                        <div class="summary-total"><span>Total</span><span>Rs ${subtotal.toLocaleString()}</span></div>
+                        <a href="order.html" class="checkout-btn">Proceed to Checkout</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function removeItem(index) {
+            cartItems.splice(index, 1);
+            renderCart();
+        }
+
+        renderCart();
+    </script>
+</body>
+</html>
