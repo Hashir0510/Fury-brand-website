@@ -43,7 +43,7 @@
         .page-header h2 { font-size: 2.5rem; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px; }
         .product-count { color: #666; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
 
-        /* PRODUCTS GRID - FIXING THE ZOOM */
+        /* PRODUCTS GRID */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -53,7 +53,6 @@
 
         .product-card { position: relative; transition: 0.3s; }
         
-        /* CONTAINER FIX: Locked to 2:3 Ratio for 1000x1500px images */
         .product-image-container {
             width: 100%; 
             aspect-ratio: 2 / 3; 
@@ -63,7 +62,6 @@
             margin-bottom: 15px;
         }
 
-        /* Branding Overlay */
         .product-image-container::after {
             content: 'FURY'; position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%); color: #eee;
@@ -73,7 +71,7 @@
         .product-image { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; /* Ensures image fills the 2:3 box without white gaps */
+            object-fit: cover; 
             position: relative; 
             z-index: 1; 
             transition: 0.5s; 
@@ -81,16 +79,28 @@
         
         .product-card:hover .product-image { transform: scale(1.03); }
 
-        .quick-add-btn {
-            position: absolute; bottom: 20px; right: 20px; width: 40px; height: 40px;
-            border-radius: 50%; background: white; border: 1px solid black;
-            cursor: pointer; opacity: 0; transition: 0.3s; z-index: 10;
+        /* --- NEW ADD TO CART BUTTON STYLES --- */
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 15px;
+            transition: background-color 0.3s;
         }
-        .product-card:hover .quick-add-btn { opacity: 1; }
-        .quick-add-btn::before { content: '+'; font-size: 24px; }
+
+        .add-to-cart-btn:hover {
+            background-color: #333333;
+        }
 
         .product-info { text-align: left; }
-        .product-name { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 0.5px; }
+        .product-name { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 0.5px; }
         .product-price { font-size: 0.9rem; color: #000; }
 
         /* --- FOOTER --- */
@@ -144,88 +154,88 @@
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="../images/hoodie1.png" class="product-image">
-                    <button class="quick-add-btn" onclick="openProductDetails('Midnight black', 6500)"></button>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Midnight black</h3>
                     <p class="product-price">Rs. 6,500</p>
+                    <button class="add-to-cart-btn" onclick="openProductDetails('Midnight black', 6500)">Add to Cart</button>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="../images/hoodie2.png" class="product-image">
-                    <button class="quick-add-btn" onclick="openProductDetails('Still green', 7200)"></button>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Still green</h3>
                     <p class="product-price">Rs. 7,200</p>
+                    <button class="add-to-cart-btn" onclick="openProductDetails('Still green', 7200)">Add to Cart</button>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="../images/hoodie3.png" class="product-image">
-                    <button class="quick-add-btn" onclick="openProductDetails('Null blue', 6800)"></button>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Null blue</h3>
                     <p class="product-price">Rs. 6,800</p>
+                    <button class="add-to-cart-btn" onclick="openProductDetails('Null blue', 6800)">Add to Cart</button>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="../images/hoodie4.png" class="product-image">
-                    <button class="quick-add-btn" onclick="openProductDetails('Sage', 7800)"></button>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Sage</h3>
                     <p class="product-price">Rs. 7,800</p>
+                    <button class="add-to-cart-btn" onclick="openProductDetails('Sage', 7800)">Add to Cart</button>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="../images/hoodie5.png" class="product-image">
-                    <button class="quick-add-btn" onclick="openProductDetails('Rusted love', 8500)"></button>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Rusted love</h3>
                     <p class="product-price">Rs. 8,500</p>
+                    <button class="add-to-cart-btn" onclick="openProductDetails('Rusted love', 8500)">Add to Cart</button>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="../images/hoodie6.png" class="product-image">
-                    <button class="quick-add-btn" onclick="openProductDetails('Olive time', 6200)"></button>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Olive time</h3>
                     <p class="product-price">Rs. 6,200</p>
+                    <button class="add-to-cart-btn" onclick="openProductDetails('Olive time', 6200)">Add to Cart</button>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="../images/hoodie7.png" class="product-image">
-                    <button class="quick-add-btn" onclick="openProductDetails('Classic brown', 7700)"></button>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Classic brown</h3>
                     <p class="product-price">Rs. 7,700</p>
+                    <button class="add-to-cart-btn" onclick="openProductDetails('Classic brown', 7700)">Add to Cart</button>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="product-image-container">
                     <img src="../images/hoodie8.png" class="product-image">
-                    <button class="quick-add-btn" onclick="openProductDetails('Truck art', 7800)"></button>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Truck art</h3>
                     <p class="product-price">Rs. 7,800</p>
+                    <button class="add-to-cart-btn" onclick="openProductDetails('Truck art', 7800)">Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -252,7 +262,7 @@
         }
 
         function openProductDetails(productName, price) {
-            alert('🔥 ' + productName + '\nPrice: Rs. ' + price + '\n\nAdd this to your cart in the Order Form!');
+            alert('🔥 ' + productName + '\nPrice: Rs. ' + price + '\n\nItem added to cart!');
         }
     </script>
 </body>
