@@ -10,7 +10,7 @@
         body { background-color: #ffffff; color: #000000; }
         a { text-decoration: none; color: inherit; }
 
-        /* --- STANDARDIZED NAVIGATION BAR (JS Toggle) --- */
+        /* --- NAVIGATION BAR --- */
         nav {
             display: flex; justify-content: space-between; align-items: center;
             padding: 20px 50px; background-color: #ffffff; border-bottom: 1px solid #e0e0e0;
@@ -20,7 +20,7 @@
         .shop-btn {
             background: none; border: none; cursor: pointer; padding: 0;
             font-size: 14px; font-weight: 500; letter-spacing: 1.5px;
-            text-transform: uppercase; color: #000000; transition: color 0.2s;
+            text-transform: uppercase; color: #000000;
         }
         .nav-center { flex: 1; text-align: center; }
         .logo-text { font-size: 32px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; }
@@ -43,7 +43,7 @@
         .page-header h2 { font-size: 2.5rem; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px; }
         .product-count { color: #666; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
 
-        /* PRODUCTS GRID */
+        /* PRODUCTS GRID - FIXING THE ZOOM */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -53,20 +53,33 @@
 
         .product-card { position: relative; transition: 0.3s; }
         
+        /* CONTAINER FIX: Locked to 2:3 Ratio for 1000x1500px images */
         .product-image-container {
-            width: 100%; aspect-ratio: 3/4; background-color: #f9f9f9;
-            overflow: hidden; position: relative; margin-bottom: 15px;
+            width: 100%; 
+            aspect-ratio: 2 / 3; 
+            background-color: #f9f9f9;
+            overflow: hidden; 
+            position: relative; 
+            margin-bottom: 15px;
         }
 
-        /* Branding Overlay for Placeholders */
+        /* Branding Overlay */
         .product-image-container::after {
             content: 'FURY'; position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%); color: #eee;
-            font-size: 2.5rem; font-weight: 900; letter-spacing: 5px;
+            font-size: 2rem; font-weight: 900; letter-spacing: 5px; z-index: 0;
         }
 
-        .product-image { width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1; transition: 0.5s; }
-        .product-card:hover .product-image { transform: scale(1.05); }
+        .product-image { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; /* Ensures image fills the 2:3 box without white gaps */
+            position: relative; 
+            z-index: 1; 
+            transition: 0.5s; 
+        }
+        
+        .product-card:hover .product-image { transform: scale(1.03); }
 
         .quick-add-btn {
             position: absolute; bottom: 20px; right: 20px; width: 40px; height: 40px;
@@ -109,18 +122,16 @@
             <a href="../index.html" class="logo-text">FURY</a>
         </div>
         <div class="nav-right">
-    <span class="currency">PK / PKR</span>
-    
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-    
-    <a href="cart.html" style="display: flex; align-items: center; cursor: pointer;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-        </svg>
-    </a>
-</div>
+            <span class="currency">PK / PKR</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" x1="21" x2="16.65" y2="16.65"></line></svg>
+            <a href="cart.html" style="display: flex; align-items: center; cursor: pointer;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+            </a>
+        </div>
     </nav>
 
     <main class="content-area">
@@ -132,7 +143,7 @@
         <div class="products-grid">
             <div class="product-card">
                 <div class="product-image-container">
-                    <img src="../images/hoodie1.png"> class="product-image">
+                    <img src="../images/hoodie1.png" class="product-image">
                     <button class="quick-add-btn" onclick="openProductDetails('Midnight black', 6500)"></button>
                 </div>
                 <div class="product-info">
@@ -143,7 +154,7 @@
 
             <div class="product-card">
                 <div class="product-image-container">
-                    <img src="../images/hoodie2.png"> class="product-image">
+                    <img src="../images/hoodie2.png" class="product-image">
                     <button class="quick-add-btn" onclick="openProductDetails('Still green', 7200)"></button>
                 </div>
                 <div class="product-info">
@@ -154,7 +165,7 @@
 
             <div class="product-card">
                 <div class="product-image-container">
-                    <img src="../images/hoodie3.png">class="product-image">
+                    <img src="../images/hoodie3.png" class="product-image">
                     <button class="quick-add-btn" onclick="openProductDetails('Null blue', 6800)"></button>
                 </div>
                 <div class="product-info">
@@ -165,7 +176,7 @@
 
             <div class="product-card">
                 <div class="product-image-container">
-                    <img src="../images/hoodie4.png"> class="product-image">
+                    <img src="../images/hoodie4.png" class="product-image">
                     <button class="quick-add-btn" onclick="openProductDetails('Sage', 7800)"></button>
                 </div>
                 <div class="product-info">
@@ -176,7 +187,7 @@
 
             <div class="product-card">
                 <div class="product-image-container">
-                   <img src="../images/hoodie5.png"> class="product-image">
+                    <img src="../images/hoodie5.png" class="product-image">
                     <button class="quick-add-btn" onclick="openProductDetails('Rusted love', 8500)"></button>
                 </div>
                 <div class="product-info">
@@ -187,7 +198,7 @@
 
             <div class="product-card">
                 <div class="product-image-container">
-                    <img src="../images/hoodie6.png"> class="product-image">
+                    <img src="../images/hoodie6.png" class="product-image">
                     <button class="quick-add-btn" onclick="openProductDetails('Olive time', 6200)"></button>
                 </div>
                 <div class="product-info">
@@ -198,7 +209,7 @@
 
             <div class="product-card">
                 <div class="product-image-container">
-                    <img src="../images/hoodie7.png"> class="product-image">
+                    <img src="../images/hoodie7.png" class="product-image">
                     <button class="quick-add-btn" onclick="openProductDetails('Classic brown', 7700)"></button>
                 </div>
                 <div class="product-info">
@@ -209,7 +220,7 @@
 
             <div class="product-card">
                 <div class="product-image-container">
-                    <img src="../images/hoodie8.png"> class="product-image">
+                    <img src="../images/hoodie8.png" class="product-image">
                     <button class="quick-add-btn" onclick="openProductDetails('Truck art', 7800)"></button>
                 </div>
                 <div class="product-info">
@@ -234,7 +245,7 @@
         window.onclick = function(event) {
             if (!event.target.matches('.shop-btn')) {
                 var dropdown = document.getElementById("shop-menu");
-                if (dropdown.classList.contains('show')) {
+                if (dropdown && dropdown.classList.contains('show')) {
                     dropdown.classList.remove('show');
                 }
             }
