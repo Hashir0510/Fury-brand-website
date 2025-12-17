@@ -8,6 +8,5 @@ FURY is a premium streetwear e-commerce website designed for the A/W 2025 collec
 
 The website features a clean, professional UI with a responsive design, a dynamic navigation system, a structured price list table for inventory, and a comprehensive customer checkout form.
 ### Live Website URL
-**[INSERT YOUR GITHUB PAGES LINK HERE]**
 https://hashir0510.github.io/Fury-brand-website/
 ---
