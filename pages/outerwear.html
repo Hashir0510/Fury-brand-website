@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +11,9 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #ffffff; /* Primary Background: White */
-            color: #000000; /* Text Color: Black */
-            scroll-behavior: smooth; /* Wussat's Task 18 Enhancement */
+            background-color: #ffffff;
+            color: #000000;
+            scroll-behavior: smooth;
         }
 
         a {
@@ -25,7 +26,7 @@
             cursor: pointer;
         }
 
-        /* --- 1. NAVIGATION BAR STYLES (FINAL VERSION) --- */
+        /* --- NAVIGATION BAR --- */
         nav {
             display: flex;
             justify-content: space-between;
@@ -38,9 +39,11 @@
             z-index: 1000;
         }
 
-        .nav-left { flex: 1; position: relative; }
+        .nav-left {
+            flex: 1;
+            position: relative;
+        }
 
-        /* Shop button styles (now styled as a button) */
         .shop-btn {
             background: none;
             border: none;
@@ -54,39 +57,54 @@
             transition: color 0.2s;
         }
 
-        .shop-btn:hover { color: #666666; }
-        .nav-center { flex: 1; text-align: center; }
-        .logo { 
-            font-size: 32px; 
-            font-weight: 900; 
-            letter-spacing: 3px; 
-            text-transform: uppercase; 
-            color: #000000; 
-        }
-        .nav-right { display: flex; justify-content: flex-end; align-items: center; gap: 25px; flex: 1; }
-        .currency { 
-            font-size: 14px; 
-            font-weight: 500; 
-            letter-spacing: 1.5px; 
-            text-transform: uppercase; 
+        .shop-btn:hover {
+            color: #666666;
         }
 
-        /* Dropdown Menu - Hidden by default */
+        .nav-center {
+            flex: 1;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #000000;
+        }
+
+        .nav-right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 25px;
+            flex: 1;
+        }
+
+        .currency {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
         .dropdown {
-            display: none; 
+            display: none;
             position: absolute;
             top: 55px;
             left: 0;
             background-color: #ffffff;
             border: 1px solid #e0e0e0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             width: 200px;
             padding: 15px 0;
             z-index: 1001;
         }
 
-        /* JavaScript adds this class on click */
-        .dropdown.show { display: block; }
+        .dropdown.show {
+            display: block;
+        }
 
         .dropdown a {
             display: block;
@@ -99,9 +117,11 @@
             transition: background 0.2s;
         }
 
-        .dropdown a:hover { background-color: #f8f8f8; }
+        .dropdown a:hover {
+            background-color: #f8f8f8;
+        }
 
-        /* --- 2. Title Section --- */
+        /* --- Title Section --- */
         .title-section {
             margin-top: 60px;
             margin-bottom: 50px;
@@ -109,7 +129,7 @@
         }
 
         .title-heading {
-            font-size: 42px; /* 42px */
+            font-size: 42px;
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -118,22 +138,20 @@
 
         .title-subtitle {
             font-size: 16px;
-            color: #666666; /* Light Gray Text */
+            color: #666666;
             font-weight: 400;
         }
 
-        /* --- 3. Product Grid --- */
+        /* --- Product Grid --- */
         .product-grid {
-            /* **UPDATED TO 4 COLUMNS** */
             display: grid;
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 25px; /* Reduced gap for more items */
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 50px;
         }
 
-        /* --- Product Card Design --- */
         .product-card {
             background: #ffffff;
             border: 1px solid #e0e0e0;
@@ -141,35 +159,41 @@
             cursor: pointer;
         }
 
-        /* Hover Effect */
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
 
         .product-image-container {
             width: 100%;
-            height: 300px; /* Adjusted height for 4 columns */
-            background: #f5f5f5; /* Placeholder background */
+            height: 300px;
+            background: #f5f5f5;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
         }
-        
+
+        /* NEW: Style to ensure GitHub images display correctly */
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .image-placeholder {
-            font-size: 16px; /* Adjusted font size */
+            font-size: 16px;
             font-weight: 600;
             color: #666666;
         }
 
         .product-details {
-            padding: 15px; /* Adjusted padding */
+            padding: 15px;
             background: #ffffff;
         }
 
         .product-name {
-            font-size: 14px; /* Adjusted font size */
+            font-size: 14px;
             font-weight: 600;
             color: #000000;
             text-transform: uppercase;
@@ -178,19 +202,18 @@
         }
 
         .product-price {
-            font-size: 16px; /* Adjusted font size */
+            font-size: 16px;
             font-weight: 700;
             color: #000000;
             margin-bottom: 15px;
         }
 
-        /* Add to Cart Button */
         .add-to-cart {
             width: 100%;
-            padding: 10px 15px; /* Adjusted padding */
+            padding: 10px 15px;
             background: #000000;
             color: #ffffff;
-            font-size: 13px; /* Adjusted font size */
+            font-size: 13px;
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -200,16 +223,16 @@
         .add-to-cart:hover {
             background: #333333;
         }
-        
-        /* --- 4. Footer Design (IDENTICAL ON ALL PAGES) --- */
+
+        /* --- Footer --- */
         .footer {
             margin-top: 100px;
             background: #ffffff;
             padding: 40px 50px;
             text-align: center;
             border-top: 1px solid #e0e0e0;
-            font-size: 13px; 
-            color: #666666; /* Light Gray Text */
+            font-size: 13px;
+            color: #666666;
             letter-spacing: 0.5px;
             line-height: 1.6;
         }
@@ -226,18 +249,19 @@
             display: block;
         }
 
-        /* --- Responsive Design (Adjusted for 4 columns) --- */
+        /* --- Responsive Design --- */
         @media (max-width: 1200px) {
             .product-grid {
-                grid-template-columns: repeat(3, 1fr); /* Drop to 3 columns on smaller screens */
+                grid-template-columns: repeat(3, 1fr);
             }
         }
+
         @media (max-width: 900px) {
             .product-grid {
-                grid-template-columns: repeat(2, 1fr); /* Drop to 2 columns on tablets */
-                gap: 30px;
+                grid-template-columns: repeat(2, 1fr);
                 padding: 0 30px;
             }
+
             .product-image-container {
                 height: 350px;
             }
@@ -245,37 +269,46 @@
 
         @media (max-width: 768px) {
             nav {
-                flex-wrap: wrap; 
+                flex-wrap: wrap;
                 padding: 20px 20px 10px;
             }
-            .nav-left, .nav-center, .nav-right {
-                flex: 0 0 100%; 
+
+            .nav-left,
+            .nav-center,
+            .nav-right {
+                flex: 0 0 100%;
                 margin-bottom: 10px;
-                text-align: center; 
+                text-align: center;
             }
-            .nav-left { order: 2; margin-top: 10px; }
-            .nav-center { order: 1; }
-            .nav-right { order: 3; justify-content: center; margin-bottom: 0; }
-            .dropdown { top: 40px; } 
+
+            .nav-left {
+                order: 2;
+                margin-top: 10px;
+            }
+
+            .nav-center {
+                order: 1;
+            }
+
+            .nav-right {
+                order: 3;
+                justify-content: center;
+            }
 
             .product-grid {
-                grid-template-columns: 1fr; /* Drop to 1 column on mobile */
-                gap: 25px;
+                grid-template-columns: 1fr;
                 padding: 0 20px;
-            }
-            .product-image-container {
-                height: 350px;
             }
         }
     </style>
 </head>
+
 <body>
 
     <header>
         <nav>
-            <div class="nav-left nav-dropdown-container">  
+            <div class="nav-left nav-dropdown-container">
                 <button class="shop-btn" onclick="toggleShopDropdown()">SHOP</button>
-                
                 <div class="dropdown" id="shop-menu">
                     <a href="outerwear.html">Outerwear</a>
                     <a href="hoodies.html">Knitwear</a>
@@ -285,13 +318,22 @@
             </div>
 
             <div class="nav-center">
-                <a href="../index.html" class="logo">FURY</a> 
+                <a href="../index.html" class="logo">FURY</a>
             </div>
 
             <div class="nav-right">
                 <span class="currency">PK / PKR</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
             </div>
         </nav>
     </header>
@@ -306,12 +348,12 @@
 
             <div class="product-card">
                 <div class="product-image-container">
-                    <span class="image-placeholder">FURY - PUFFER JACKET</span>
+                    <img src="../images/outerwear1.png" alt="Wax Work Jacket - Heritage Green">
                 </div>
                 <div class="product-details">
-                    <div class="product-name">Puffer Jacket</div>
+                    <div class="product-name">Wax Work Jacket - Heritage Green</div>
                     <div class="product-price">Rs. 8,500</div>
-                    <button class="add-to-cart" onclick="alert('Added to cart: Puffer Jacket!')">Add to Cart</button>
+                    <button class="add-to-cart" onclick="alert('Added to cart: Wax Work Jacket!')">Add to Cart</button>
                 </div>
             </div>
 
@@ -327,68 +369,56 @@
             </div>
 
             <div class="product-card">
-                <div class="product-image-container">
-                    <span class="image-placeholder">FURY - DENIM JACKET</span>
-                </div>
+                <div class="product-image-container"><span class="image-placeholder">FURY - DENIM JACKET</span></div>
                 <div class="product-details">
                     <div class="product-name">Denim Jacket</div>
                     <div class="product-price">Rs. 7,000</div>
-                    <button class="add-to-cart" onclick="alert('Added to cart: Denim Jacket!')">Add to Cart</button>
+                    <button class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="product-image-container">
-                    <span class="image-placeholder">FURY - VARSITY JACKET</span>
-                </div>
+                <div class="product-image-container"><span class="image-placeholder">FURY - VARSITY JACKET</span></div>
                 <div class="product-details">
                     <div class="product-name">Varsity Jacket</div>
                     <div class="product-price">Rs. 9,500</div>
-                    <button class="add-to-cart" onclick="alert('Added to cart: Varsity Jacket!')">Add to Cart</button>
+                    <button class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="product-image-container">
-                    <span class="image-placeholder">FURY - TRENCH COAT</span>
-                </div>
+                <div class="product-image-container"><span class="image-placeholder">FURY - TRENCH COAT</span></div>
                 <div class="product-details">
                     <div class="product-name">Trench Coat</div>
                     <div class="product-price">Rs. 10,000</div>
-                    <button class="add-to-cart" onclick="alert('Added to cart: Trench Coat!')">Add to Cart</button>
+                    <button class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="product-image-container">
-                    <span class="image-placeholder">FURY - BOMBER JACKET</span>
-                </div>
+                <div class="product-image-container"><span class="image-placeholder">FURY - BOMBER JACKET</span></div>
                 <div class="product-details">
                     <div class="product-name">Bomber Jacket</div>
                     <div class="product-price">Rs. 7,500</div>
-                    <button class="add-to-cart" onclick="alert('Added to cart: Bomber Jacket!')">Add to Cart</button>
-                </div>
-            </div>
-            
-            <div class="product-card">
-                <div class="product-image-container">
-                    <span class="image-placeholder">FURY - LEATHER JACKET</span>
-                </div>
-                <div class="product-details">
-                    <div class="product-name">Leather Jacket</div>
-                    <div class="product-price">Rs. 12,000</div>
-                    <button class="add-to-cart" onclick="alert('Added to cart: Leather Jacket!')">Add to Cart</button>
+                    <button class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
 
             <div class="product-card">
-                <div class="product-image-container">
-                    <span class="image-placeholder">FURY - PARKA</span>
+                <div class="product-image-container"><span class="image-placeholder">FURY - LEATHER JACKET</span></div>
+                <div class="product-details">
+                    <div class="product-name">Leather Jacket</div>
+                    <div class="product-price">Rs. 12,000</div>
+                    <button class="add-to-cart">Add to Cart</button>
                 </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-container"><span class="image-placeholder">FURY - PARKA</span></div>
                 <div class="product-details">
                     <div class="product-name">Parka</div>
                     <div class="product-price">Rs. 9,000</div>
-                    <button class="add-to-cart" onclick="alert('Added to cart: Parka!')">Add to Cart</button>
+                    <button class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
 
@@ -406,8 +436,7 @@
             document.getElementById("shop-menu").classList.toggle("show");
         }
 
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (!event.target.matches('.shop-btn')) {
                 var dropdown = document.getElementById("shop-menu");
                 if (dropdown && dropdown.classList.contains('show')) {
@@ -416,6 +445,6 @@
             }
         }
     </script>
-
 </body>
+
 </html>
