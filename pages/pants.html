@@ -5,296 +5,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pants - FURY</title>
     <style>
-        /* --- General Reset & Style Guide Adherence --- */
+        /* --- General Reset --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff; /* Primary Background: White */
-            color: #000000; /* Text Color: Black */
-            scroll-behavior: smooth; /* Wussat's Task 18 Enhancement */
+            background-color: #ffffff;
+            color: #000000;
+            scroll-behavior: smooth;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+        a { text-decoration: none; color: inherit; }
+        button { border: none; cursor: pointer; }
 
-        button {
-            border: none;
-            cursor: pointer;
-        }
-
-        /* --- 1. NAVIGATION BAR STYLES (FINAL VERSION) --- */
+        /* --- NAVIGATION BAR --- */
         nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-            background-color: #ffffff;
-            border-bottom: 1px solid #e0e0e0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 50px; background-color: #ffffff; border-bottom: 1px solid #e0e0e0;
+            position: sticky; top: 0; z-index: 1000;
         }
-
         .nav-left { flex: 1; position: relative; }
-
-        /* Shop button styles (now styled as a button) */
         .shop-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #000000;
-            transition: color 0.2s;
+            background: none; border: none; cursor: pointer; padding: 0;
+            font-size: 14px; font-weight: 500; letter-spacing: 1.5px;
+            text-transform: uppercase; color: #000000;
         }
-
-        .shop-btn:hover { color: #666666; }
         .nav-center { flex: 1; text-align: center; }
-        .logo { 
-            font-size: 32px; 
-            font-weight: 900; 
-            letter-spacing: 3px; 
-            text-transform: uppercase; 
-            color: #000000; 
-        }
+        .logo { font-size: 32px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: #000000; }
         .nav-right { display: flex; justify-content: flex-end; align-items: center; gap: 25px; flex: 1; }
-        .currency { 
-            font-size: 14px; 
-            font-weight: 500; 
-            letter-spacing: 1.5px; 
-            text-transform: uppercase; 
-        }
+        .currency { font-size: 14px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; }
 
-        /* Dropdown Menu - Hidden by default */
         .dropdown {
-            display: none; 
-            position: absolute;
-            top: 55px;
-            left: 0;
-            background-color: #ffffff;
-            border: 1px solid #e0e0e0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 200px;
-            padding: 15px 0;
-            z-index: 1001;
+            display: none; position: absolute; top: 55px; left: 0;
+            background-color: #ffffff; border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 200px; padding: 15px 0; z-index: 1001;
         }
-
-        /* JavaScript adds this class on click */
         .dropdown.show { display: block; }
-
-        .dropdown a {
-            display: block;
-            padding: 12px 25px;
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #000000;
-            transition: background 0.2s;
-        }
-
+        .dropdown a { display: block; padding: 12px 25px; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; }
         .dropdown a:hover { background-color: #f8f8f8; }
 
-        /* --- 2. Title Section --- */
-        .title-section {
-            margin-top: 60px;
-            margin-bottom: 50px;
-            text-align: center;
-        }
+        /* --- Title Section --- */
+        .title-section { margin-top: 60px; margin-bottom: 50px; text-align: center; }
+        .title-heading { font-size: 42px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+        .title-subtitle { font-size: 16px; color: #666666; font-weight: 400; }
 
-        .title-heading {
-            font-size: 42px; /* 42px */
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        .title-subtitle {
-            font-size: 16px;
-            color: #666666; /* Light Gray Text */
-            font-weight: 400;
-        }
-
-        /* --- 3. Product Grid --- */
+        /* --- Product Grid - FIXED ASPECT RATIO --- */
         .product-grid {
-            /* **UPDATED TO 4 COLUMNS** */
             display: grid;
             grid-template-columns: repeat(4, 1fr); 
-            gap: 25px; /* Reduced gap for more items */
+            gap: 30px;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 50px;
+            padding: 0 50px 80px;
         }
 
-        /* --- Product Card Design --- */
-        .product-card {
-            background: #ffffff;
-            border: 1px solid #e0e0e0;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        /* Hover Effect */
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
+        .product-card { background: #ffffff; transition: all 0.3s ease; }
+        
+        /* Container locked to 2:3 to fit 1000x1500px perfectly */
         .product-image-container {
             width: 100%;
-            height: 300px; /* Adjusted height for 4 columns */
-            background: #f5f5f5; /* Placeholder background */
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            aspect-ratio: 2 / 3;
+            background: #f5f5f5;
+            position: relative;
             overflow: hidden;
-        }
-        
-        .image-placeholder {
-            font-size: 16px; /* Adjusted font size */
-            font-weight: 600;
-            color: #666666;
-        }
-
-        .product-details {
-            padding: 15px; /* Adjusted padding */
-            background: #ffffff;
-        }
-
-        .product-name {
-            font-size: 14px; /* Adjusted font size */
-            font-weight: 600;
-            color: #000000;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        .product-price {
-            font-size: 16px; /* Adjusted font size */
-            font-weight: 700;
-            color: #000000;
             margin-bottom: 15px;
         }
-
-        /* Add to Cart Button */
-        .add-to-cart {
-            width: 100%;
-            padding: 10px 15px; /* Adjusted padding */
-            background: #000000;
-            color: #ffffff;
-            font-size: 13px; /* Adjusted font size */
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: background 0.3s;
-        }
-
-        .add-to-cart:hover {
-            background: #333333;
-        }
         
-        /* --- 4. Footer Design (IDENTICAL ON ALL PAGES) --- */
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* No distortion, clean fill */
+            transition: 0.5s;
+        }
+
+        .product-card:hover .product-image { transform: scale(1.03); }
+
+        .product-details { padding: 5px 0; }
+        .product-name { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .product-price { font-size: 14px; font-weight: 500; margin-bottom: 12px; }
+
+        .add-to-cart {
+            width: 100%; padding: 12px;
+            background: #000000; color: #ffffff;
+            font-size: 12px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .add-to-cart:hover { background: #333333; }
+        
+        /* --- Footer --- */
         .footer {
-            margin-top: 100px;
-            background: #ffffff;
-            padding: 40px 50px;
-            text-align: center;
-            border-top: 1px solid #e0e0e0;
-            font-size: 13px; 
-            color: #666666; /* Light Gray Text */
-            letter-spacing: 0.5px;
-            line-height: 1.6;
+            background: #ffffff; padding: 60px 50px 40px; text-align: center;
+            border-top: 1px solid #e0e0e0; font-size: 13px; color: #666666;
         }
+        .footer-names { color: #000000; font-weight: 600; margin: 15px 0; display: block; }
 
-        .footer-names {
-            color: #000000;
-            font-weight: 600;
-            margin-top: 15px;
-            display: block;
-            line-height: 1.8;
-        }
-
-        .footer-copyright {
-            display: block;
-        }
-
-        /* --- Responsive Design (Adjusted for 4 columns) --- */
-        @media (max-width: 1200px) {
-            .product-grid {
-                grid-template-columns: repeat(3, 1fr); /* Drop to 3 columns on smaller screens */
-            }
-        }
-        @media (max-width: 900px) {
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr); /* Drop to 2 columns on tablets */
-                gap: 30px;
-                padding: 0 30px;
-            }
-            .product-image-container {
-                height: 350px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                flex-wrap: wrap; 
-                padding: 20px 20px 10px;
-            }
-            .nav-left, .nav-center, .nav-right {
-                flex: 0 0 100%; 
-                margin-bottom: 10px;
-                text-align: center; 
-            }
-            .nav-left { order: 2; margin-top: 10px; }
-            .nav-center { order: 1; }
-            .nav-right { order: 3; justify-content: center; margin-bottom: 0; }
-            .dropdown { top: 40px; } 
-
-            .product-grid {
-                grid-template-columns: 1fr; /* Drop to 1 column on mobile */
-                gap: 25px;
-                padding: 0 20px;
-            }
-            .product-image-container {
-                height: 350px;
-            }
-        }
+        /* Responsive */
+        @media (max-width: 1200px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 900px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .product-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <div class="nav-left nav-dropdown-container">  
-                <button class="shop-btn" onclick="toggleShopDropdown()">SHOP</button>
-                
-                <div class="dropdown" id="shop-menu">
-                    <a href="outerwear.html">Outerwear</a>
-                    <a href="hoodies.html">Knitwear</a>
-                    <a href="shirts.html">Shirts</a>
-                    <a href="pants.html">Pants</a>
-                </div>
+    <nav>
+        <div class="nav-left">  
+            <button class="shop-btn" onclick="toggleShopDropdown()">SHOP</button>
+            <div class="dropdown" id="shop-menu">
+                <a href="outerwear.html">Outerwear</a>
+                <a href="hoodies.html">Knitwear</a>
+                <a href="shirts.html">Shirts</a>
+                <a href="pants.html">Pants</a>
             </div>
-
-            <div class="nav-center">
-                <a href="../index.html" class="logo">FURY</a> 
-            </div>
-
-            <div class="nav-right">
-                <span class="currency">PK / PKR</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </div>
+        <div class="nav-center">
+            <a href="../index.html" class="logo">FURY</a> 
+        </div>
+        <div class="nav-right">
+            <span class="currency">PK / PKR</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <a href="cart.html">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-            </div>
-        </nav>
-    </header>
+            </a>
+        </div>
+    </nav>
 
     <main>
         <div class="title-section">
@@ -303,88 +135,84 @@
         </div>
 
         <section class="product-grid">
-
             <div class="product-card">
                 <div class="product-image-container">
-                    <span class="image-placeholder">FURY - CARGO</span>
+                    <img src="../images/pants1.png" class="product-image" alt="Cargo">
                 </div>
                 <div class="product-details">
                     <div class="product-name">Black Cargo Pants</div>
                     <div class="product-price">Rs. 5,500</div>
-                    <button class="add-to-cart" onclick="alert('Added to cart: Black Cargo Pants!')">Add to Cart</button>
+                    <button class="add-to-cart" onclick="alert('Added to cart!')">Add to Cart</button>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="product-image-container">
-                    <span class="image-placeholder">FURY - JEANS</span>
+                    <img src="../images/pants2.png" class="product-image" alt="Jeans">
                 </div>
                 <div class="product-details">
                     <div class="product-name">Slim Fit Jeans</div>
                     <div class="product-price">Rs. 4,500</div>
-                    <button class="add-to-cart" onclick="alert('Added to cart: Slim Fit Jeans!')">Add to Cart</button>
+                    <button class="add-to-cart" onclick="alert('Added to cart!')">Add to Cart</button>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="product-image-container">
-                    <span class="image-placeholder">FURY - JOGGERS</span>
+                    <img src="../images/pants3.png" class="product-image" alt="Joggers">
                 </div>
                 <div class="product-details">
-                    <div class="product-name">Joggers</div>
+                    <div class="product-name">FURY Joggers</div>
                     <div class="product-price">Rs. 4,000</div>
-                    <button class="add-to-cart" onclick="alert('Added to cart: Joggers!')">Add to Cart</button>
+                    <button class="add-to-cart" onclick="alert('Added to cart!')">Add to Cart</button>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="product-image-container">
-                    <span class="image-placeholder">FURY - WIDE LEG</span>
+                    <img src="../images/pants4.png" class="product-image" alt="Wide">
                 </div>
                 <div class="product-details">
                     <div class="product-name">Wide Leg Trousers</div>
                     <div class="product-price">Rs. 5,000</div>
-                    <button class="add-to-cart" onclick="alert('Added to cart: Wide Leg Trousers!')">Add to Cart</button>
+                    <button class="add-to-cart" onclick="alert('Added to cart!')">Add to Cart</button>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="product-image-container">
-                    <span class="image-placeholder">FURY - DENIM</span>
+                    <img src="../images/pants5.png" class="product-image" alt="Denim">
                 </div>
                 <div class="product-details">
-                    <div class="product-name">Denim Jeans</div>
+                    <div class="product-name">Vintage Denim</div>
                     <div class="product-price">Rs. 4,200</div>
-                    <button class="add-to-cart" onclick="alert('Added to cart: Denim Jeans!')">Add to Cart</button>
+                    <button class="add-to-cart" onclick="alert('Added to cart!')">Add to Cart</button>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="product-image-container">
-                    <span class="image-placeholder">FURY - TRACK</span>
+                    <img src="../images/pants6.png" class="product-image" alt="Track">
                 </div>
                 <div class="product-details">
                     <div class="product-name">Track Pants</div>
                     <div class="product-price">Rs. 3,500</div>
-                    <button class="add-to-cart" onclick="alert('Added to cart: Track Pants!')">Add to Cart</button>
+                    <button class="add-to-cart" onclick="alert('Added to cart!')">Add to Cart</button>
                 </div>
             </div>
-            
         </section>
     </main>
 
     <footer class="footer">
         Premium streetwear for the bold
         <span class="footer-names">Hashir, Wussat, Fatima</span>
-        <span class="footer-copyright">&copy; 2025 FURY. ICT Semester Project.</span>
+        <span>&copy; 2025 FURY. ICT Semester Project.</span>
     </footer>
 
     <script>
         function toggleShopDropdown() {
             document.getElementById("shop-menu").classList.toggle("show");
         }
-
-        // Close the dropdown if the user clicks outside of it
         window.onclick = function(event) {
             if (!event.target.matches('.shop-btn')) {
                 var dropdown = document.getElementById("shop-menu");
@@ -394,6 +222,5 @@
             }
         }
     </script>
-
 </body>
 </html>
