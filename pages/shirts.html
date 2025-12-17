@@ -1,242 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shirts - FURY</title>
     <style>
         /* BASE STYLES */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-
-        body {
-            background-color: #ffffff;
-            color: #000000;
-            overflow-x: hidden;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background-color: #ffffff; color: #000000; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
 
         /* --- NAVIGATION --- */
         nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-            background-color: #ffffff;
-            border-bottom: 1px solid #e0e0e0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 50px; background-color: #ffffff; border-bottom: 1px solid #e0e0e0;
+            position: sticky; top: 0; z-index: 1000;
         }
-
-        .nav-left {
-            flex: 1;
-            position: relative;
-        }
-
-        .shop-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #000000;
-        }
-
+        .nav-left { flex: 1; position: relative; }
+        .shop-btn { background: none; border: none; cursor: pointer; font-size: 14px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; }
         .dropdown {
-            display: none;
-            position: absolute;
-            top: 55px;
-            left: 0;
-            background-color: #ffffff;
-            border: 1px solid #e0e0e0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            width: 200px;
-            padding: 15px 0;
-            z-index: 1001;
+            display: none; position: absolute; top: 55px; left: 0;
+            background-color: #ffffff; border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); width: 200px; padding: 15px 0; z-index: 1001;
         }
-
-        .dropdown.show {
-            display: block;
-        }
-
-        .dropdown a {
-            display: block;
-            padding: 12px 25px;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        .dropdown a:hover {
-            background-color: #f8f8f8;
-        }
-
-        .nav-center {
-            flex: 1;
-            text-align: center;
-        }
-
-        .logo {
-            font-size: 32px;
-            font-weight: 900;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        .nav-right {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .currency {
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-        }
+        .dropdown.show { display: block; }
+        .dropdown a { display: block; padding: 12px 25px; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; }
+        .nav-center { flex: 1; text-align: center; }
+        .logo { font-size: 32px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; }
+        .nav-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 25px; }
 
         /* HEADER */
-        .category-header {
-            padding: 80px 50px 40px;
-            text-align: center;
-        }
-
-        .category-header h2 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-        }
-
-        .item-count {
-            font-size: 14px;
-            color: #666666;
-            margin-top: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .category-header { padding: 80px 50px 40px; text-align: center; }
+        .category-header h2 { font-size: 2.5rem; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; }
+        .item-count { font-size: 14px; color: #666666; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px; }
 
         /* GRID */
         .product-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px 30px;
-            padding: 0 50px 100px;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px 30px;
+            max-width: 1400px; margin: 0 auto; padding: 0 50px 100px;
         }
 
-        .product-card {
-            position: relative;
-            transition: 0.3s;
-        }
-
-        /* Fixed Aspect Ratio to match Knitwear/Pants */
-        .img-container {
-            aspect-ratio: 2/3;
+        /* FIXED ASPECT RATIO (Matches Outerwear/Knitwear) */
+        .product-image-container {
+            width: 100%;
+            aspect-ratio: 2 / 3; /* This ensures the tall, professional look */
             overflow: hidden;
             background-color: #f5f5f5;
-            position: relative;
         }
 
-        .img-container img {
+        .product-image-container img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* This prevents the "too big" stretching effect */
             transition: transform 0.6s ease;
         }
 
-        .product-card:hover img {
-            transform: scale(1.05);
-        }
+        .product-card:hover img { transform: scale(1.05); }
 
-        /* EXACT ADD TO CART BUTTON STYLE */
+        /* ADD TO CART BUTTON */
         .add-to-cart-btn {
-            width: 100%;
-            padding: 15px;
-            background-color: #000000;
-            color: #ffffff;
-            border: none;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 15px;
+            width: 100%; padding: 15px; background-color: #000000; color: #ffffff;
+            border: none; cursor: pointer; font-size: 12px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px; margin-top: 15px;
             transition: background-color 0.3s;
         }
+        .add-to-cart-btn:hover { background-color: #333333; }
 
-        .add-to-cart-btn:hover {
-            background-color: #333333;
-        }
-
-        .product-info {
-            margin-top: 15px;
-            text-align: left;
-        }
-
-        .product-name {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 5px;
-        }
-
-        .product-price {
-            font-size: 14px;
-            color: #333;
-        }
+        .product-info { margin-top: 15px; text-align: left; }
+        .product-name { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
+        .product-price { font-size: 14px; color: #333; }
 
         /* FOOTER */
-        footer {
-            background-color: #ffffff;
-            padding: 60px 50px 40px;
-            text-align: center;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        .footer-text {
-            font-size: 13px;
-            color: #666666;
-            margin-bottom: 10px;
-        }
-
-        .team-names {
-            font-size: 13px;
-            font-weight: 600;
-            color: #000000;
-        }
+        footer { background-color: #ffffff; padding: 60px 50px 40px; text-align: center; border-top: 1px solid #e0e0e0; }
+        .footer-text { font-size: 13px; color: #666666; margin-bottom: 10px; }
+        .team-names { font-size: 13px; font-weight: 600; color: #000000; }
 
         /* RESPONSIVE */
-        @media (max-width: 1100px) {
-            .product-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr);
-                padding: 0 20px 80px;
-            }
-
-            .category-header {
-                padding: 50px 20px 30px;
-            }
+        @media (max-width: 1100px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px) { 
+            .product-grid { grid-template-columns: repeat(2, 1fr); padding: 0 20px 80px; }
+            .category-header { padding: 50px 20px 30px; }
         }
     </style>
 </head>
@@ -253,22 +96,11 @@
                 <a href="pants.html">Pants</a>
             </div>
         </div>
-        <div class="nav-center">
-            <a href="../index.html" class="logo">FURY</a>
-        </div>
+        <div class="nav-center"><a href="../index.html" class="logo">FURY</a></div>
         <div class="nav-right">
             <span class="currency">PK / PKR</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="9" cy="21" r="1"></circle>
-                <circle cx="20" cy="21" r="1"></circle>
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-            </svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
         </div>
     </nav>
 
@@ -280,96 +112,89 @@
     <section class="product-grid">
         <div class="product-card">
             <div class="product-image-container">
-                <img src="../images/shirts1.png" alt="Regular fit cotton blend shirt" class="product-image">
+                <img src="../images/shirts1.png" alt="Regular fit cotton blend shirt">
             </div>
             <div class="product-info">
                 <h3 class="product-name">Regular fit cotton blend shirt</h3>
                 <p class="product-price">Rs. 4,500</p>
-                <button class="add-to-cart-btn" onclick="alert('Added to cart: Regular fit cotton blend shirt!')">Add to
-                    Cart</button>
+                <button class="add-to-cart-btn" onclick="alert('Added to cart: Regular fit cotton blend shirt!')">Add to Cart</button>
             </div>
         </div>
 
         <div class="product-card">
             <div class="product-image-container">
-                <img src="../images/shirts2.png" alt="regular fit brown cotton shirt" class="product-image">
+                <img src="../images/shirts2.png" alt="regular fit brown cotton shirt">
             </div>
             <div class="product-info">
                 <h3 class="product-name">regular fit brown cotton shirt</h3>
                 <p class="product-price">Rs. 4,800</p>
-                <button class="add-to-cart-btn" onclick="alert('Added to cart: regular fit brown cotton shirt!')">Add to
-                    Cart</button>
+                <button class="add-to-cart-btn" onclick="alert('Added to cart: regular fit brown cotton shirt!')">Add to Cart</button>
             </div>
         </div>
+
         <div class="product-card">
             <div class="product-image-container">
-                <img src="../images/shirts3.png" alt="Regular fit pinstripe white shirt" class="product-image">
+                <img src="../images/shirts3.png" alt="Regular fit pinstripe white shirt">
             </div>
             <div class="product-info">
                 <h3 class="product-name">Regular fit pinstripe white shirt</h3>
                 <p class="product-price">Rs. 5,200</p>
-                <button class="add-to-cart-btn" onclick="alert('Added to cart: Regular fit pinstripe white shirt!')">Add
-                    to Cart</button>
+                <button class="add-to-cart-btn" onclick="alert('Added to cart: Regular fit pinstripe white shirt!')">Add to Cart</button>
             </div>
         </div>
 
         <div class="product-card">
             <div class="product-image-container">
-                <img src="../images/shirts4.png" alt="linen slim fit blue shirt" class="product-image">
+                <img src="../images/shirts4.png" alt="linen slim fit blue shirt">
             </div>
             <div class="product-info">
                 <h3 class="product-name">linen slim fit blue shirt</h3>
                 <p class="product-price">Rs. 5,500</p>
-                <button class="add-to-cart-btn" onclick="alert('Added to cart: linen slim fit blue shirt!')">Add to
-                    Cart</button>
+                <button class="add-to-cart-btn" onclick="alert('Added to cart: linen slim fit blue shirt!')">Add to Cart</button>
             </div>
         </div>
 
         <div class="product-card">
             <div class="product-image-container">
-                <img src="../images/shirts5.png" alt="Regular fit faded linen green shirt" class="product-image">
+                <img src="../images/shirts5.png" alt="Regular fit faded linen green shirt">
             </div>
             <div class="product-info">
                 <h3 class="product-name">Regular fit faded linen green shirt</h3>
                 <p class="product-price">Rs. 5,800</p>
-                <button class="add-to-cart-btn"
-                    onclick="alert('Added to cart: Regular fit faded linen green shirt!')">Add to Cart</button>
+                <button class="add-to-cart-btn" onclick="alert('Added to cart: Regular fit faded linen green shirt!')">Add to Cart</button>
             </div>
         </div>
 
         <div class="product-card">
             <div class="product-image-container">
-                <img src="../images/shirts6.png" alt="Regular fit striped linen sky blue shirt" class="product-image">
+                <img src="../images/shirts6.png" alt="Regular fit striped linen sky blue shirt">
             </div>
             <div class="product-info">
                 <h3 class="product-name">Regular fit striped linen sky blue shirt</h3>
                 <p class="product-price">Rs. 6,000</p>
-                <button class="add-to-cart-btn"
-                    onclick="alert('Added to cart: Regular fit striped linen sky blue shirt!')">Add to Cart</button>
+                <button class="add-to-cart-btn" onclick="alert('Added to cart: Regular fit striped linen sky blue shirt!')">Add to Cart</button>
             </div>
         </div>
 
         <div class="product-card">
             <div class="product-image-container">
-                <img src="../images/shirts7.png" alt="Relaxed fit check shirt" class="product-image">
+                <img src="../images/shirts7.png" alt="Relaxed fit check shirt">
             </div>
             <div class="product-info">
                 <h3 class="product-name">Relaxed fit check shirt</h3>
                 <p class="product-price">Rs. 5,400</p>
-                <button class="add-to-cart-btn" onclick="alert('Added to cart: Relaxed fit check shirt!')">Add to
-                    Cart</button>
+                <button class="add-to-cart-btn" onclick="alert('Added to cart: Relaxed fit check shirt!')">Add to Cart</button>
             </div>
         </div>
 
         <div class="product-card">
             <div class="product-image-container">
-                <img src="../images/shirts8.png" alt="Regular fit flowing shirt" class="product-image">
+                <img src="../images/shirts8.png" alt="Regular fit flowing shirt">
             </div>
             <div class="product-info">
                 <h3 class="product-name">Regular fit flowing shirt</h3>
                 <p class="product-price">Rs. 5,000</p>
-                <button class="add-to-cart-btn" onclick="alert('Added to cart: Regular fit flowing shirt!')">Add to
-                    Cart</button>
+                <button class="add-to-cart-btn" onclick="alert('Added to cart: Regular fit flowing shirt!')">Add to Cart</button>
             </div>
         </div>
     </section>
@@ -381,19 +206,13 @@
     </footer>
 
     <script>
-        function toggleShopDropdown() {
-            document.getElementById("shop-menu").classList.toggle("show");
-        }
-
+        function toggleShopDropdown() { document.getElementById("shop-menu").classList.toggle("show"); }
         window.onclick = function (event) {
             if (!event.target.matches('.shop-btn')) {
                 var dropdown = document.getElementById("shop-menu");
-                if (dropdown && dropdown.classList.contains('show')) {
-                    dropdown.classList.remove('show');
-                }
+                if (dropdown && dropdown.classList.contains('show')) { dropdown.classList.remove('show'); }
             }
         }
     </script>
 </body>
-
 </html>
