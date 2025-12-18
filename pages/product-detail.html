@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aged Heavy Wash Leather Jacket | FURY</title>
+    <style>
+        /* --- RESET & BASIC STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background-color: #ffffff; color: #000000; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- NAVIGATION BAR --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 50px; background-color: #ffffff; border-bottom: 1px solid #e0e0e0;
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .nav-left { flex: 1; position: relative; }
+        .shop-btn {
+            background: none; border: none; cursor: pointer; padding: 0;
+            font-size: 14px; font-weight: 500; letter-spacing: 1.5px;
+            text-transform: uppercase; color: #000000; transition: color 0.2s;
+        }
+        .shop-btn:hover { color: #666666; }
+        .nav-center { flex: 1; text-align: center; }
+        .logo { font-size: 32px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: #000000; }
+        .nav-right { flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 25px; }
+        .currency { font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; }
+
+        /* Dropdown Menu */
+        .dropdown {
+            display: none; position: absolute; top: 55px; left: 0;
+            background-color: #ffffff; border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 200px; padding: 15px 0; z-index: 1001;
+        }
+        .dropdown.show { display: block; }
+        .dropdown a {
+            display: block; padding: 12px 25px; font-size: 13px; font-weight: 500;
+            letter-spacing: 1.5px; text-transform: uppercase; color: #000000;
+        }
+        .dropdown a:hover { background-color: #f8f8f8; }
+
+        /* --- PRODUCT LAYOUT --- */
+        .product-main {
+            display: flex; max-width: 1400px; margin: 60px auto; padding: 0 50px; gap: 50px;
+        }
+        
+        /* Thumbnails */
+        .thumb-gallery { display: flex; flex-direction: column; gap: 15px; width: 85px; }
+        .thumb-img { 
+            width: 100%; aspect-ratio: 3/4; background-color: #f9f9f9; 
+            object-fit: cover; cursor: pointer; border: 1px solid transparent; 
+        }
+        .thumb-img:hover { border: 1px solid #000; }
+
+        /* Main Image Area */
+        .image-display { flex: 2; background-color: #f9f9f9; display: flex; justify-content: center; }
+        #main-view { width: 100%; height: auto; object-fit: contain; }
+
+        /* Product Info Sidebar */
+        .info-panel { flex: 1.5; display: flex; flex-direction: column; gap: 20px; }
+        .breadcrumb { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .product-name { font-size: 28px; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; }
+        .product-price { font-size: 20px; font-weight: 600; }
+        .product-desc { font-size: 14px; color: #444; line-height: 1.8; margin-top: 10px; }
+        
+        .specs-list { font-size: 14px; color: #444; list-style: none; }
+        .specs-list li::before { content: "- "; }
+
+        /* Buying Controls */
+        .size-selection { margin-top: 20px; }
+        .size-header { display: flex; justify-content: space-between; font-size: 12px; text-transform: uppercase; margin-bottom: 10px; }
+        select {
+            width: 100%; padding: 15px; border: 1px solid #e0e0e0; font-size: 14px;
+            background-color: #fff; cursor: pointer; margin-bottom: 20px; outline: none;
+        }
+        .bag-btn {
+            width: 100%; padding: 20px; background-color: #000; color: #fff;
+            border: none; text-transform: uppercase; font-weight: 700;
+            letter-spacing: 2px; cursor: pointer; transition: 0.3s;
+        }
+        .bag-btn:hover { background-color: #333; }
+
+        /* --- FOOTER --- */
+        footer { padding: 60px 50px; text-align: center; border-top: 1px solid #e0e0e0; margin-top: 80px; }
+        .footer-note { font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .product-main { flex-direction: column; padding: 0 20px; }
+            .thumb-gallery { flex-direction: row; width: 100%; order: 2; }
+            .image-display { order: 1; }
+            .info-panel { order: 3; }
+            nav { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-left">
+            <button class="shop-btn" onclick="toggleShopDropdown()">SHOP</button>
+            <div class="dropdown" id="shop-menu">
+                <a href="outerwear.html">Outerwear</a>
+                <a href="hoodies.html">Knitwear</a>
+                <a href="shirts.html">Shirts</a>
+                <a href="pants.html">Pants</a>
+            </div>
+        </div>
+        <div class="nav-center">
+            <a href="index.html" class="logo">FURY</a>
+        </div>
+        <div class="nav-right">
+            <span class="currency">PK / PKR</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            
+            <a href="cart.html">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <main class="product-main">
+        <div class="thumb-gallery">
+            <img src="images/jacket-front.png" class="thumb-img" onclick="changeImage(this.src)" alt="Front View">
+            <img src="images/jacket-back.png" class="thumb-img" onclick="changeImage(this.src)" alt="Back View">
+            <img src="images/jacket-detail1.png" class="thumb-img" onclick="changeImage(this.src)" alt="Close Up">
+            <img src="images/jacket-detail2.png" class="thumb-img" onclick="changeImage(this.src)" alt="Internal View">
+        </div>
+
+        <div class="image-display">
+            <img id="main-view" src="images/jacket-front.png" alt="Aged Heavy Wash Leather Jacket">
+        </div>
+
+        <div class="info-panel">
+            <div class="breadcrumb">Home / Outerwear / Leather</div>
+            <h1 class="product-name">Aged Heavy Wash Leather Jacket</h1>
+            <p class="product-price">Rs. 55,500</p>
+            
+            <p class="product-desc">
+                Inspired by vintage leather jackets, the Aged Heavy Wash Leather Jacket is designed for a slightly wide and boxy fit. 
+                Crafted from premium full-grain cow leather with an enzyme wash for an authentic aged appearance.
+            </p>
+            
+            <ul class="specs-list">
+                <li>Wide, Boxy Fit</li>
+                <li>100% Full-Grain Cow Leather</li>
+                <li>Enzyme Wash Treatment</li>
+                <li>YKK 2-Way Zip Closure</li>
+            </ul>
+
+            <div class="size-selection">
+                <div class="size-header">
+                    <span>Select Size</span>
+                    <span style="text-decoration: underline; cursor: pointer;">Size Guide</span>
+                </div>
+                <select id="user-size">
+                    <option value="" disabled selected>Choose your size</option>
+                    <option value="S">Small</option>
+                    <option value="M">Medium</option>
+                    <option value="L">Large</option>
+                    <option value="XL">X-Large</option>
+                </select>
+                <button class="bag-btn" onclick="addToBag()">Add to Bag</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p class="footer-note">© 2025 FURY. Premium Streetwear Essentials.</p>
+    </footer>
+
+    <script>
+        // 1. Dropdown Logic
+        function toggleShopDropdown() {
+            document.getElementById("shop-menu").classList.toggle("show");
+        }
+
+        // Close dropdown if user clicks away
+        window.onclick = function(event) {
+            if (!event.target.matches('.shop-btn')) {
+                var menu = document.getElementById("shop-menu");
+                if (menu.classList.contains('show')) {
+                    menu.classList.remove('show');
+                }
+            }
+        }
+
+        // 2. Thumbnail Gallery Logic
+        function changeImage(newSrc) {
+            document.getElementById('main-view').src = newSrc;
+        }
+
+        // 3. Add to Bag Redirect
+        function addToBag() {
+            const size = document.getElementById('user-size').value;
+            if (!size) {
+                alert("Please select a size before adding to bag.");
+            } else {
+                // Redirects to your cart page
+                window.location.href = "cart.html";
+            }
+        }
+    </script>
+
+</body>
+</html>
